@@ -1,5 +1,6 @@
 <?php  
 if( !defined( 'ABSPATH' ) ) exit;
+
 function ishf_get_option_header_script()
 {
 	return wp_unslash(get_option('insert_header_script_gk'));

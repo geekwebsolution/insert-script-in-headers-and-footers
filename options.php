@@ -1,26 +1,25 @@
 <?php 
 if( !defined( 'ABSPATH' ) ) exit;
 if(current_user_can('manage_options') && isset($_POST['submit_option'])){
-	$header_script = htmlspecialchars($_POST['header_script']);
-	$body_script = htmlspecialchars($_POST['body_script']);
-	$footer_script = htmlspecialchars($_POST['footer_script']);
-	$nonce=sanitize_text_field($_POST['insert_script_wpnonce']);
 
-	if(wp_verify_nonce( $nonce, 'insert_script_option_nonce' ))
-	{
+	$header_script	= htmlspecialchars($_POST['header_script']);
+	$body_script	= htmlspecialchars($_POST['body_script']);
+	$footer_script	= htmlspecialchars($_POST['footer_script']);
+	$nonce			= sanitize_text_field($_POST['insert_script_wpnonce']);
+
+	if(wp_verify_nonce( $nonce, 'insert_script_option_nonce' )){
 		update_option('insert_header_script_gk',$header_script);
 		update_option('insert_body_script_gk',$body_script);
 		update_option('insert_footer_script_gk',$footer_script);
 		$successmsg= ishf_success_option_msg('Settings Saved.');
-	}
-	else
-	{
+
+	}else {
         $errormsg= ishf_failure_option_msg('Unable to save data!');
     }
 }
-$header_script= ishf_get_option_header_script();
-$body_script=ishf_get_option_body_script();
-$footer_script=ishf_get_option_footer_script();
+$header_script	= ishf_get_option_header_script();
+$body_script	= ishf_get_option_body_script();
+$footer_script	= ishf_get_option_footer_script();
 ?>
 
 
