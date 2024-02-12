@@ -1,7 +1,6 @@
 <?php 
 if( !defined( 'ABSPATH' ) ) exit;
 if(current_user_can('manage_options') && isset($_POST['submit_option'])){
-
 	$header_script	= htmlspecialchars($_POST['header_script']);
 	$body_script	= htmlspecialchars($_POST['body_script']);
 	$footer_script	= htmlspecialchars($_POST['footer_script']);
@@ -22,11 +21,9 @@ $body_script	= ishf_get_option_body_script();
 $footer_script	= ishf_get_option_footer_script();
 ?>
 
-
 <div class="wrap ishf-script-wrap">
-
 	<h2><?php _e('Insert Script In Headers And Footers &raquo; Settings','insert-script-in-headers-and-footers'); ?></h2>
-	
+
 	<?php
 	if ( isset( $successmsg ) ) {
 		?>
@@ -40,8 +37,8 @@ $footer_script	= ishf_get_option_footer_script();
 	}
 	$nonce= wp_create_nonce('insert_script_option_nonce');
 	?>
-	<div class="row">
-		<div class='col-6'>
+	<div class="ishf-row">
+		<div class='ishf-col-6'>
 		<div class="ishf-inner">
 			<h4 class="heading-h4"><?php _e('Settings','insert-script-in-headers-and-footers'); ?></h4>
 			
@@ -68,7 +65,7 @@ $footer_script	= ishf_get_option_footer_script();
 			</div>
 			
 		</div>
-		<div class="col-6">
+		<div class="ishf-col-6">
 			<div class="ishf_pro_details">
 				<h2><?php esc_html_e('Insert Script In Headers And Footers Pro','insert-script-in-headers-and-footers'); ?></h2>
 				<ul>
@@ -96,6 +93,4 @@ $footer_script	= ishf_get_option_footer_script();
 			</div>
 		</div>
 	</div>
-	
-
 </div>
