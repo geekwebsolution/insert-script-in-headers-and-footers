@@ -10,9 +10,19 @@ Text Domain: insert-script-in-headers-and-footers
 
 if( !defined( 'ABSPATH' ) ) exit;
 
+if (!defined("ISHF_PLUGIN_BASENAME"))
+	define("ISHF_PLUGIN_BASENAME", plugin_basename(__FILE__));
+
+if (!defined("ISHF_PLUGIN_DIR"))
+define("ISHF_PLUGIN_DIR", plugin_basename(__DIR__));
+
+if (!defined("ISHF_PLUGIN_DIR_PATH"))
+	define("ISHF_PLUGIN_DIR_PATH", plugin_dir_path(__FILE__));
+
 define("ISHF_BUILD", '2.4.1');
 
 require_once( plugin_dir_path (__FILE__) .'functions.php' );
+require(ISHF_PLUGIN_DIR_PATH . 'updater/updater.php');
 
 add_action('admin_menu', 'ishf_admin_menu_header_footer_script' );
 add_action('admin_init', 'ishf_registerSettings' );
@@ -20,10 +30,13 @@ add_action('admin_enqueue_scripts', 'ishf_enqueue_styles_scripts_header_footer_s
 add_action('wp_head', 'ishf_frontendHeaderScript',100);
 add_action('wp_body_open', 'ishf_frontendBodyScript',100);
 add_action('wp_footer', 'ishf_frontendFooterScript',100);
+add_action('upgrader_process_complete', 'ishf_updater_activate'); // remove  transient  on plugin  update
+
 
 register_activation_hook( __FILE__, 'ishf_plugin_activation' );
 
 function ishf_plugin_activation(){
+	ishf_updater_activate();
 	if (is_plugin_active( 'insert-script-in-headers-and-footers-pro/insert-script-in-headers-and-footers-pro.php' ) ) {
 		deactivate_plugins('insert-script-in-headers-and-footers-pro/insert-script-in-headers-and-footers-pro.php');
 	}
