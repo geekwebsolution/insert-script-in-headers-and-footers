@@ -3,7 +3,7 @@
 Plugin Name: Insert Script In Headers And Footers
 Description: A plugin to insert script in headers and footers
 Author: Geek Code Lab
-Version: 2.4.1
+Version: 2.5.0
 Author URI: https://geekcodelab.com/
 Text Domain: insert-script-in-headers-and-footers
 */
@@ -19,7 +19,7 @@ define("ISHF_PLUGIN_DIR", plugin_basename(__DIR__));
 if (!defined("ISHF_PLUGIN_DIR_PATH"))
 	define("ISHF_PLUGIN_DIR_PATH", plugin_dir_path(__FILE__));
 
-define("ISHF_BUILD", '2.4.1');
+define("ISHF_BUILD", '2.5.0');
 
 require_once( plugin_dir_path (__FILE__) .'functions.php' );
 require(ISHF_PLUGIN_DIR_PATH . 'updater/updater.php');
